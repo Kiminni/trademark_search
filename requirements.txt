@@ -1,3 +1,6 @@
 fastapi
 uvicorn[standard]
-pymysql # MySQL 드라이버 (mysql+pymysql dialect 용) 
+pymysql # MySQL 동기 드라이버
+aiomysql # MySQL 비동기 드라이버
+SQLAlchemy[asyncio] # ORM 및 비동기 지원
+cryptography # MySQL 8+ 인증 방식 지원 

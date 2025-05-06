@@ -9,8 +9,6 @@ services:
       - ./app:/app
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
     networks:
       - trademark_network
     env_file:
