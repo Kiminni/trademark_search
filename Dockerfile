@@ -10,5 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./app /app
 
-# uvicorn 실행 (app 패키지의 main 모듈 내 app 객체 지정)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"] 
+RUN chmod +x scripts/wait_for_db.py scripts/load_data.py
+
+# 또는 애플리케이션이 uvicorn 등으로 실행된다면:
+CMD ["sh", "-c", "python scripts/wait_for_db.py && python scripts/load_data.py && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"] 
