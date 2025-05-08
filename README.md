@@ -12,7 +12,6 @@
 
 ## 실행 방법
 
-
 ### ENV 파일 설정
 ```bash
 # Database Settings
@@ -24,6 +23,37 @@ DB_HOST=db
 DB_PORT=3306
 DATABASE_URL=mysql+aiomysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 ```
+
+### 가상환경 설정 (로컬 개발)
+```bash
+# 저장소 복제
+git clone https://github.com/yourusername/trademark_search.git
+cd trademark_search
+
+# Python 가상환경 생성
+python -m venv venv
+
+# 가상환경 활성화
+## macOS/Linux:
+source venv/bin/activate
+## Windows:
+venv\Scripts\activate
+
+# 의존성 설치
+pip install -r requirements.txt
+
+# 환경 변수 설정 (예시)
+export DB_NAME=trademark_db
+export DB_USER=root
+export DB_PASSWORD=password
+export DB_HOST=localhost
+export DB_PORT=3306
+export DATABASE_URL=mysql+aiomysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+
+# 서버 실행
+uvicorn app.main:app --reload
+```
+
 ### Docker를 사용한 실행
 ```bash
 docker compose up --build
