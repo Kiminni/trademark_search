@@ -191,21 +191,29 @@ class TrademarkService:
     
     def _convert_to_dict(self, model: TradeMark) -> Dict[str, Any]:
         """ORM 모델을 딕셔너리로 변환"""
+        # 날짜 필드 처리를 위한 헬퍼 함수
+        def format_date(date_value):
+            if not date_value:
+                return None
+            if isinstance(date_value, (datetime, date)):
+                return date_value.isoformat()
+            return date_value  # 이미 문자열이거나 다른 형식인 경우 그대로 반환
+            
         return {
             "id": model.id,
             "productName": model.productName,
             "productNameEng": model.productNameEng,
             "applicationNumber": model.applicationNumber,
-            "applicationDate": model.applicationDate.isoformat() if model.applicationDate else None,
+            "applicationDate": format_date(model.applicationDate),
             "registerStatus": model.registerStatus,
             "publicationNumber": model.publicationNumber,
-            "publicationDate": model.publicationDate.isoformat() if model.publicationDate else None,
+            "publicationDate": format_date(model.publicationDate),
             "registrationNumber": model.registrationNumber,
             "registrationDate": model.registrationDate,
             "registrationPubNumber": getattr(model, "registrationPubNumber", None),
             "registrationPubDate": getattr(model, "registrationPubDate", None),
             "internationalRegNumbers": model.internationalRegNumbers,
-            "internationalRegDate": model.internationalRegDate.isoformat() if model.internationalRegDate else None,
+            "internationalRegDate": format_date(model.internationalRegDate),
             "priorityClaimNumList": model.priorityClaimNumList,
             "priorityClaimDateList": model.priorityClaimDateList,
             "asignProductMainCodeList": model.asignProductMainCodeList,

@@ -20,3 +20,5 @@ data/
 .idea/
 .cursor/
 .DS_Store
+
+/venv/

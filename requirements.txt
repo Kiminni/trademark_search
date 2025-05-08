@@ -1,6 +1,14 @@
-fastapi
-uvicorn[standard]
-pymysql # MySQL 동기 드라이버
-aiomysql # MySQL 비동기 드라이버
-SQLAlchemy[asyncio] # ORM 및 비동기 지원
-cryptography # MySQL 8+ 인증 방식 지원 
+fastapi==0.109.0
+uvicorn==0.24.0
+sqlalchemy==2.0.23
+pydantic==2.5.3
+aiomysql==0.2.0
+pymysql==1.1.0
+cryptography  # MySQL 8+ 인증 방식 지원
+
+# 테스트 의존성
+pytest==7.4.3
+pytest-asyncio==0.23.2
+pytest-cov==4.1.0
+httpx==0.25.2
+aiosqlite==0.19.0 
